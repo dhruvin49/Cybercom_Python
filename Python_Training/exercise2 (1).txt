@@ -1,0 +1,12 @@
+x = 121
+r = 0
+i = 121
+
+while i>0:
+  r = (r*10) + i%10
+  i = i//10
+
+if r == x:
+  print("true")
+else :
+  print("false")
