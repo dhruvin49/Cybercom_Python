@@ -1,0 +1,129 @@
+CREATE TABLE event (
+  event_id int(11) auto_increment not null primary key,
+  title varchar(50),
+  parent_event_id int(11),
+  image = models.ImageField(upload_to = 'products/')
+  categoryid int(5) not null, 
+  event_guest varchar(50),
+  event_details varchar(100) not null,
+  startdate datetime not null,
+  enddate datetime,
+  location_id int(10) not null,
+  location Hyperlink,
+  totalguest int(10),
+  event_charge decimal(10,2),
+  event_customer_price decimal(10,2)
+);
+
+alter table event
+add constraint fk_catid foreign key (categoryid) references event_category(categoryid),
+add constraint fk_lid foreign key (location_id) references master_event_location(location_id);
+
+
+
+CREATE TABLE Event_category (
+  categoryid int(5) auto_increment primary key,
+  category varchar(100) not null,
+);
+
+
+
+
+CREATE TABLE master_event_location(
+  location_id int (11) auto_increment not null primary key,
+  event_id int (11),
+  address text not null, 
+);
+
+
+alter master_event_location 
+add constraint fk_eventid foreign key (event_id) references event(event_id);
+
+
+
+
+CREATE TABLE staff (
+  staff_id int(11) auto_increment primary key,
+  staff_name varchar(50) not null,
+  staff_contactno varchar(15) not null,
+  sraff_email varchar(50) not null,
+);
+
+
+
+CREATE TABLE eventstaff(
+  event_id int(11),
+  staff_id (11),
+  remarks varcharz(255)
+);
+
+alter table eventstaff
+add constraint fk_eventid foreign key (event_id) references event(event_id),
+add constraint fk_sid foreign key (staff_id) references staff(staff_id);
+
+
+
+CREATE TABLE Client(
+  c_id int(11) auto_increment primary key,
+  c_name varchar(255) not null,
+  c_contactno varchar(15) not null,
+  c_email varchar(50) unique not null
+);
+
+
+
+CREATE TABLE user(
+  userid int(10) auto_increment not null primary key,
+  firstname int(50) not null,
+  lastname varchar(50) not null,
+  user_email varchar(50) not null,
+  password varchar(15) not null,
+  user_contactno. varchar(15) not null,
+);
+
+
+
+CREATE TABLE payment(
+  paymentid varchar(15) primary key,
+  userid int(10),
+  event_id int(10),
+  event_charge int(10)
+);
+
+alter table payment
+add constraint fk_id foreign key (userid) references user(userid), 
+add constraint fk_eventid foreign key (event_id) references event(event_id),
+add constraint fk_charge foreign key (event_charge) references event(event_charge);
+
+
+CREATE TABLE Sponsors(
+  sponsor_id int(10) auto_increment primary key,
+  sponsor_name varchar(50),
+  event_id int(11)
+);
+
+alter table Sponsors
+add constraint fk_eventid foreign key (event_id) references event(event_id);
+
+
+CREATE TABLE tablearrangement(
+   table_id int primary key,
+   title varchar 100,
+   tablecapacity int(2),
+   event_id int(11)
+);
+
+alter table tablearrangement
+add constraint fk_event foreign key (event_id) references event(event_id);
+
+
+
+CREATE TABLE seatarrangement(
+   table_id int primary key,
+   userid int(10)
+);
+
+alter table seatarrangement
+add constraint fk_seat foreign key (userid) references user(userid), 
+
+
