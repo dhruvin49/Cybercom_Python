@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>{{ employee }}</h1>
+    <h2>Holidays</h2>
+    <form method="get" action="{% url 'employee_profile' %}">
+        <label for="year">Year:</label>
+        <select name="year" id="year">
+            {% for year in years %}
+                <option value="{{ year }}" {% if year == current_year %}selected{% endif %}>{{ year }}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" value="Submit">
+    </form>
+    <ul>
+        {% for holiday in holidays %}
+            <li>{{ holiday.date }} - {{ holiday.name }}</li>
+        {% empty %}
+            <li>No holidays found.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

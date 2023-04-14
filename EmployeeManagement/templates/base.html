@@ -1,0 +1,9 @@
+<!-- ...existing code... -->
+
+{% if user.is_authenticated %}
+    <a href="{% url 'profile' %}">Profile</a>
+{% else %}
+    <a href="{% url 'login' %}">Login</a>
+{% endif %}
+
+<!-- ...existing code... -->

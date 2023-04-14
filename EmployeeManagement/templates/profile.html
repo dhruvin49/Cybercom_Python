@@ -1,0 +1,16 @@
+
+
+    <p>Here is your profile:</p>
+    {% for a in authUser %}
+    
+       <p>First Name: {{ a.first_name }}</p> 
+       <p>Last Name:{{a.last_name}}</p>
+    
+    {% endfor %}
+
+{% if user.is_authenticated %}
+    <form action="{% url 'logout' %}" method="POST">
+      {% csrf_token %}
+      <button type="submit">Logout</button>
+    </form>
+  {% endif %}

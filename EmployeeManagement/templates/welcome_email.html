@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to {{ company_name }}</title>
+  </head>
+  <body>
+    <h1>Welcome to {{ company_name }}</h1>
+    <p>Dear {{ employee_name }},</p>
+    <p>We are delighted to have you onboard with us. You start from {{ joining_date }}, {{ joining_day }}.</p>
+    <!-- <p>You can login to your profile using this <a href="{{ login_link }}">link</a>:</p> -->
+    <ul>
+      <li>Username: {{ username }}</li>
+      <li>Password: {{ password }}</li>
+    </ul>
+    <p>HR Manager</p>
+    <p>{{ system_config_value }}</p>
+  </body>
+</html>
